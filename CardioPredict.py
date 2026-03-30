@@ -13,7 +13,6 @@ scaler = joblib.load("heart_scaler.pkl")
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
-        # Collect form inputs
         data = [float(request.form[f]) for f in features]
         df = pd.DataFrame([data], columns=features)
         scaled = scaler.transform(df)
@@ -22,5 +21,5 @@ def home():
         result = "Disease Risk" if prediction == 1 else "Healthy"
         return render_template("result.html", prediction=result)
     else:
-        # Show the input form when visiting the site
+        # Show the form when visiting the site
         return render_template("index.html")
