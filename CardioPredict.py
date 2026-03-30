@@ -21,8 +21,6 @@ def home():
 
         result = "Disease Risk" if prediction == 1 else "Healthy"
         return render_template("result.html", prediction=result)
-
-    return render_template("index.html")  # input form
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    else:
+        # Show the input form when visiting the site
+        return render_template("index.html")
